@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Analyzer</title>
+</head>
+<link rel="icon" href="data:,">
+<body>
+    <h2>Student Marks Analyzer</h2>
+    <p>Enter student details in the prompts.</p>
+
+    <script>
+        let name = prompt("Enter student name:");
+        let rollNo = Number(prompt("Enter roll number:"));
+        let department = prompt("Enter department:");
+
+        let marks = [];
+
+        for (let i = 1; i <= 5; i++) {
+            let mark;
+
+            do {
+                mark = Number(prompt(`Enter marks for subject ${i} (0-100):`));
+            } while (mark < 0 || mark > 100);
+
+            marks.push(mark);
+        }
+
+        function calculateTotal(marks) {
+            return 
+            marks.reduce((total, mark) => total + mark, 0);
+        }
+
+        function calculatePercentage(marks) {
+            return calculateTotal(marks) / marks.length;
+        }
+
+        function findHighest(marks) {
+            return Math.max(...marks);
+        }
+
+        function findLowest(marks) {
+            return Math.min(...marks);
+        }
+
+        function countPassed(marks) {
+            return marks.filter(mark => mark >= 40).length;
+        }
+
+        function getPerformance(marks) {
+            let percentage = calculatePercentage(marks);
+
+            if (percentage >= 80) return "Excellent";
+            else if (percentage >= 60) return "Good";
+            else if (percentage >= 40) return "Average";
+            else return "Needs Improvement";
+        }
+
+        console.log("Student:", name.toUpperCase());
+        console.log("Roll Number:", rollNo);
+        console.log("Department:", department);
+        console.log("Name Length:", name.length);
+        console.log("Marks:", marks);
+        console.log("Total Marks:", calculateTotal(marks));
+        console.log("Percentage:", calculatePercentage(marks) + "%");
+        console.log("Highest Marks:", findHighest(marks));
+        console.log("Lowest Marks:", findLowest(marks));
+        console.log("Subjects Passed:", countPassed(marks));
+        console.log("Performance:", getPerformance(marks));
+    </script>
+</body>
+</html>
